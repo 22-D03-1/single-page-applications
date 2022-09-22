@@ -63,12 +63,25 @@ books.forEach((book) => {
    * - append() gibt nichts zurück und appendChild() die hinzugefügte Node
    * - append() kann mehrere Elemente entgegen nehmen und appendChild() nur eins
    */
-  listElement.append(img, body, footer)
-  body.append(title, author)
+  listElement.append(footer)
+  body.append(author)
+  body.prepend(title)
   footer.appendChild(status)
   bookList.appendChild(listElement)
 
+  // Fügt ein Element in Relation zu den Geschwistern hinzu. Entweder Vorher oder Nachher
+  footer.before(img)
+  img.after(body)
+
+  //Entfernt das Kind in Relation zu den Parent
+  listElement.removeChild(footer)
+  
+  //Entfernt das Element
+  body.remove()
+
 })
+
+
 
 console.log(bookList.children)
 
