@@ -10,7 +10,7 @@ tollButton.onclick = () => {
   console.log("klick 1")
   /**
    * Entfernt den Event Listener
-   * Benötigt Eventart und Funktion, die entfernt werden muss
+   * Benötigt Event Art und Name der Funktion, die entfernt werden soll
    * Funktion darf nicht anonym sein, sprich innerhalb des addEventListener Aufruf deklariert.
    */
   okButton.removeEventListener("click", okButtonEventHandler)
@@ -53,7 +53,7 @@ htmlBody.addEventListener("keyup", (e)=> {
       message.innerText = "Spaceship";
       break;
     case "Enter":
-      message.innerText = "Enter des Gate";
+      message.innerText = "Enter the Gate";
       break;
   }
   htmlBody.append(message)
