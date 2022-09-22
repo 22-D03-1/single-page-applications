@@ -1,4 +1,3 @@
-
 const books = [
   {
     title: "The Design of EveryDay Things",
@@ -28,3 +27,32 @@ const books = [
     img: "https://eloquentjavascript.net/img/cover.jpg"
   }
 ];
+
+//Alle Li Blankos auswählen
+const bookElements = document.querySelectorAll("li")
+
+console.log(bookElements)
+
+bookElements.forEach((el, index) => {
+  el.classList.add("card", "book")
+
+  const [ body, footer ] = el.querySelectorAll("section")
+  body.classList.add("card-body")
+  footer.classList.add("card-footer")
+
+  const title = el.querySelector("h2")
+  title.innerText = books[index].title
+  title.classList.add("card-title", "title")
+
+  const img = el.querySelector("img")
+  img.src = books[index].img
+  img.classList.add("book-cover")
+
+  const author = el.querySelector("p")
+  author.innerText = books[index].author
+  img.classList.add("card-text")
+
+  const status = el.querySelector("span")
+  status.innerText =  books[index].alreadyRead ?  "Gelesen" : "Ungelesen"
+
+})
