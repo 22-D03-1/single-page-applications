@@ -17,7 +17,7 @@ const nameHandler = () => {
      * getDay() ist eine Funktion des Date Objekt welches eine Zahl zwischen 0-6 zurück gibt
      * 0: Sonntag, 1: Montag, 2: Dienstag ...
      */
-    const d = new Date().getDay() - 2;
+    const d = new Date().getDay();
     /**
      * Greeting ist ein leeres Element in der HTML Datei. Wir ändern über innerText
      * den Inhalt in das was wir in value erhalten haben  
