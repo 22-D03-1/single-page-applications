@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Registrierung</title>
+
+    <style>
+        label,
+        input {
+            display: block;
+        }
+
+        label {
+            margin-bottom: 15px;
+        }
+
+        .error {
+            font-size: 0.75em;
+            color: red;
+        }
+
+    </style>
+
+    <script>
+        // Mögliche Lösung für die Überprüfung des Alters:
+        // Wir erstellen zwei Dates und bilden die Differenz der Timestamps (Millisekunden seit dem 01.01.1970).
+        // Wir wandeln 18 Jahre in Millisekunden um (Achtung! In dieser Variante berücksichtigen wir keine Schaltjahre!).
+        const birthday = new Date("2004-10-02");
+        const currentDate = Date.now();
+        const age = currentDate - birthday.getTime();
+        const timeSpan = 18 * 365 * 24 * 60 * 60 * 1000; // years * days * hours * ...
+        console.log(currentDate, birthday.getTime(), age, timeSpan);
+
+        // Anschließend ziehen wir die 18 Jahre vom Alter ab.
+        // Ist das Ergebnis kleiner als 0, ist die Person zu jung.
+        console.log(age - timeSpan);
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                // Bei jedem Absenden des Formulars löschen wir zunächst alle Fehler.
+                const errors = document.querySelectorAll(".error");
+                errors.forEach(error => error.remove());
+
+                const password = form.elements.password.value;
+                const passwordConfirm = form.elements.passwordConfirm.value;
+                const firstName = form.elements.firstName.value;
+                // Bei Checkboxen nutzen wir checked statt value.
+                // checked beinhaltet den aktuellen Status als Boolean.
+                const agb = form.elements.agb.checked;
+
+                // Die Variable valid steht anfangs auf true, um damit zu symbolisieren,
+                // dass das Formular richtig ausgefüllt wurde.
+                // Wir prüfen anschließend auf Fehler und setzen valid auf false,
+                // sobald ein Fehler aufgetreten ist.
+                // Nur wenn valid am Ende noch auf true steht, wird das Formular tatsächlich abgesendet.
+                let valid = true;
+
+                // Eine Validierung läuft immer nach dem gleichen Prinzip ab:
+                // Wir haben eine Bedingung (if (...)), die den Fehler beschreibt.
+                // Ist der Fehler vorhanden, wird eine Meldung gesetzt
+                // und valid auf false gestellt.
+                if (password === "" || passwordConfirm === "") {
+                    const error = document.createElement("p");
+                    error.innerText = "Passwörter werden benötigt";
+                    error.classList.add("error");
+
+                    // Wir können in dieser Struktur auf parentElement zugreifen,
+                    // weil der Input in einem Label platziert ist.
+                    // Hätten wir Label und Input auf der gleichen Ebene (Siblings),
+                    // müssen wir einen anderen Weg finden, um die Fehlermeldung hinzuzufügen.
+                    form.elements.passwordConfirm.parentElement.append(error);
+                    valid = false;
+                }
+
+                // Die Validierungen ließen sich übrigens auch wunderbar in eine Funktion verpacken (DRY!).
+                if (password !== passwordConfirm) {
+                    const error = document.createElement("p");
+                    error.innerText = "Passwörter stimmen nicht überein";
+                    error.classList.add("error");
+
+                    form.elements.passwordConfirm.parentElement.append(error);
+                    valid = false;
+                }
+
+                if (firstName === "") {
+                    const error = document.createElement("p");
+                    error.innerText = "Der Vorname wird benötigt";
+                    error.classList.add("error");
+
+                    form.elements.firstName.parentElement.append(error);
+                    valid = false;
+                }
+
+                if (!agb) {
+                    const error = document.createElement("p");
+                    error.innerText = "Sie müssen zustimmen";
+                    error.classList.add("error");
+
+                    form.elements.agb.parentElement.append(error);
+                    valid = false;
+                }
+
+                // Nur wenn valid durch keine der Validierungen in false geändert wurde,
+                // soll das Fomular abgesendet werden können.
+                if (valid) {
+                    alert("submit!");
+                    // Die Methode submit() sorgt jetzt dafür,
+                    // dass der Browser doch noch das ausführt,
+                    // was wir zuvor mit event.preventDefault() deaktiviert hatten.
+                    form.submit();
+                }
+            });
+
+            // Um das Passwort ein- und ausblenden zu lassen,
+            // können wir folgende Lösung nutzen:
+            // Wir wählen unseren "Toggle", also das Element, das angeklickt werden kann,
+            // und unser Eingabefeld, welches angepasst werden soll.
+            const togglePassword = document.getElementById("toggle-password");
+            const passwordInput = form.elements.password;
+
+            // Auf den Toggle legen wir einen Event Listener, der das Click-Event abhört.
+            // Beim Klick prüfen wir das Attribut "type" des Eingabefeldes.
+            // Steht es auf "password", setzen wir es auf "text".
+            // Andernfalls setzen wir es auf "password".
+            togglePassword.addEventListener("click", function () {
+                passwordInput.type = (passwordInput.type === "password") ? "text" : "password";
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <form>
+        <label>
+            Passwort
+            <input type="password" name="password">
+            <div id="toggle-password">Anzeigen/Ausblenden</div>
+        </label>
+        <label>
+            Passwort wiederholen
+            <input type="password" name="passwordConfirm">
+        </label>
+        <label>
+            Vorname
+            <input type="text" name="firstName">
+        </label>
+        <label>
+            Nachname
+            <input type="text" name="lastName">
+        </label>
+        <label>
+            <input type="checkbox" name="agb">
+            AGB
+        </label>
+
+        <input type="submit" value="registrieren">
+    </form>
+</body>
+
+</html>
