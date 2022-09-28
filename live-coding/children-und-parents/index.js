@@ -30,6 +30,7 @@ const books = [
 
 const bookList = document.querySelector(".book-list")
 
+//das children Attribut gibt eine Collection aller untergeordneten Elemente zurück
 console.log(bookList.children)
 
 books.forEach((book) => {
