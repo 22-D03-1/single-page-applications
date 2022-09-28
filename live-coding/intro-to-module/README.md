@@ -1,6 +1,6 @@
-# Intro to Module
+# Intro to Modules
 
-Wir machen heute unseren Code modular, heisst wir teilen ihn in Komponeneten auf mit verschiedenen Funktionen.
+Wir machen heute unseren Code modular, heisst wir teilen ihn in Komponenten auf mit verschiedenen Funktionen.
 Jede Komponente bekommt eine eigene Datei
 
 ![Modular App](https://static-assets.codecademy.com/Courses/Learn-JavaScript/Modules/modular-program-diagram.svg)

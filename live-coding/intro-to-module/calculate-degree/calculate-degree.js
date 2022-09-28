@@ -1,7 +1,15 @@
+/**
+ * Beim importieren können wir mit as die Variable umbennnen
+ * Macht Sinn, wenn wir mehrere Variablen mit dem selben Namen importieren
+ */
 import { 
     calculateCelsiusToFahrenheit as cToFh, 
     calculateFahrenheitToCelsius as fhToC 
 } from "../modules/degree-calculation.js"
+/**
+ * Wenn eine Datei einen default export hat, können wir diesen ohne {} importieren
+ * und den Namen beim import vergeben
+ */
 import changeColor from "../modules/change-color.js"
 
 const fahrenheitButton = document.querySelector("#calculate-fh")
