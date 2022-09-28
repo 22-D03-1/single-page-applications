@@ -14,15 +14,15 @@ Jede Komponente bekommt eine eigene Datei
 
 ## Implementierung
 ### Exportieren
-**Variante 1:** Am Ende der Datei als Objekt `export {varOne, varTwo, ...}`
-**Variante 2:** Als keyword vor Deklarierung der Variable `export const varOne = ... `
+* **Variante 1:** Am Ende der Datei als Objekt `export {varOne, varTwo, ...}`
+* **Variante 2:** Als keyword vor Deklarierung der Variable `export const varOne = ... `
 
 ### Importieren
-`import {varOne, varTwo} from "./path/to/file.js"`
-Umbenenen beim importieren `import { varOne as firstImport } from "./path/to/file.js"`
-Alle exports als Modul importieren `import * as moduleName from "./path/to/file.js"`
+* `import {varOne, varTwo} from "./path/to/file.js"`
+* Umbenenen beim importieren `import { varOne as firstImport } from "./path/to/file.js"`
+* Alle exports als Modul importieren `import * as moduleName from "./path/to/file.js"`. Zugriff dann über `moduleName.varOne()`
 
 ### Special Case: Default
-Wenn eine Datei eine "HauptVariable" hat, kann diese ohne Benennung als default exportiert werden. Beim import sind dann keine {} mehr notwendig und der Name kann beim importieren vergeben werden
-**Export:** `export default () => {...}`
-**Import:** `import nameWeChose from "./fileWithDefaulExport.js"`
+* Wenn eine Datei eine "HauptVariable" hat, kann diese ohne Benennung als default exportiert werden. Beim import sind dann keine {} mehr notwendig und der Name kann beim importieren vergeben werden
+* **Export:** `export default () => {...}`
+* **Import:** `import nameWeChose from "./fileWithDefaulExport.js"`
