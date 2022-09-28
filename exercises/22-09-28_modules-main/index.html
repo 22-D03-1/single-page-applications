@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <title>Calculator X</title>
+</head>
+
+<body>
+    <header>
+        <div class="jumbotron jumbotron-fluid bg-warning">
+            <div class="container">
+                <h1 class="text-center text-uppercase align-middle">
+                    <i class="fas fa-calculator"></i>
+                    Calculation X
+                </h1>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            
+            <h2>Special operations</h2>
+            <form id="modulo-form">
+                <legend>Modulo</legend>
+                <div class="form-row align-items-center mb-3">
+                    <div class="col">
+                        <input type="number" id="modulo_1" class="arithmetic operand form-control" value="0" step="1" />
+                    </div>
+                    <span class="operator font-weight-bold lead">%</span>
+                    <div class="col">
+                        <input type="number" id="modulo_2" class="arithmetic operand form-control" value="0" step="1" />
+                    </div>
+                    <span class="arithmetic operator font-weight-bold lead">=</span>
+                    <div class="col">
+                        <input type="number" id="modulo_result" readonly class="result form-control" value="0"
+                            data-operation="modulo" />
+                    </div>
+                </div>
+            </form>
+
+
+            <!-- Percentage Calculations -->
+            <h2>Percentage Calculations</h2>
+            <form id="percentage-form">
+                <div class="form-row align-items-center mb-3">
+                    <span class="lead">What is</span>
+
+                    <div class="col">
+                        <input type="number" id="percentage_1" class="percentage operand form-control" value="0"
+                            step="1" />
+                    </div>
+                    <span class="operator font-weight-bold lead">%</span> <span class=" ml-1 lead"> of</span>
+                    <div class="col">
+                        <input type="number" id="percentage_2" class="percentage operand form-control" value="0"
+                            step="1" />
+                    </div>
+                    <span class="operator font-weight-bold lead">=</span>
+                    <div class="col">
+                        <input type="number" id="percentage_result" readonly class="result form-control" value="0"
+                            data-operation="percent" />
+                    </div>
+                </div>
+            </form>
+
+            <form id="percentageOf-form">
+                <div class="form-row align-items-center mb-3">
+                    <div class="col">
+                        <input type="number" id="percentageOf_1" class="percentageOf operand form-control" value="0"
+                            step="1" />
+                    </div>
+                    <span class="lead"> is what percent of </span>
+                    <div class="col">
+                        <input type="number" id="percentageOf_2" class="percentageOf operand form-control" value="0"
+                            step="1" />
+                    </div>
+                    <span class="operator font-weight-bold lead">=</span>
+                    <div class="col">
+                        <input type="number" id="percentageOf_result" readonly class="result form-control" value="0"
+                            data-operation="percentNumber" />
+                    </div>
+                    <span class="lead">%</span>
+                </div>
+            </form>
+
+            <form id="difference-form">
+                <span class="lead"> What is the percentage increase/decrease from </span>
+                <div class="form-row align-items-center mb-3">
+
+                    <div class="col">
+                        <input type="number" id="difference_1" class="difference operand form-control" value="0"
+                            step="1" />
+                    </div>
+                    <span class="lead"> to</span>
+                    <div class="col">
+                        <input type="number" id="difference_2" class="difference operand form-control" value="0"
+                            step="1" />
+                    </div>
+                    <span class="operator font-weight-bold lead">=</span>
+                    <div class="col">
+                        <input type="number" id="difference_result" readonly class="result form-control" value="0"
+                            data-operation="percentNumber" />
+                    </div>
+                    <span class="lead">%</span>
+                </div>
+            </form>
+
+            <h2>Aspect Ratio Calculations</h2>
+            <legend>Find the missing new height or width</legend>
+            <form id="aspect-form">
+                <div class="form-row align-items-center mb-5">
+                    <span class="lead">Original width:</span>
+                    <div class="col">
+                        <input type="number" id="ratio_1" class="ratio operand form-control" value="0" step="1" />
+                    </div>
+                    <span class="operator font-weight-bold lead">&times;</span>
+                    <span class="lead ml-1">Original height:</span>
+                    <div class="col">
+                        <input type="number" id="ratio_2" class="ratio operand form-control " value="0" step="1" />
+                    </div>
+                    <span class="lead font-weight-bold">&equals;</span>
+                    <span class="lead ml-1">New width</span>
+                    <div class="col">
+                        <input type="number" id="ratio_result-width" class="ratio width result form-control" value="0"
+                            data-operation="ratio" />
+                    </div>
+                    <span class="lead">New height</span>
+                    <div>
+                        <input type="number" id="ratio_result-height" class="ratio height result form-control" value="0"
+                            data-operation="ratio" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </main>
+    <script type="module" src="./modules/index.js"></script>
+</body>
+
+</html>
