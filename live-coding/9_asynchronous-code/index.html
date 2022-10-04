@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asynchronous Code</title>
+
+    <script>
+        // Wollen wir eine funktion asynchron ausführbar machen, können wir mit Promises arbeiten.
+        function sayYes() {
+            const number = Math.random();
+            console.log(number);
+
+            // Wir geben der aufrufenden Stelle ein "Versprechen", dass wir etwas erledigen werden.
+            // Die aufrufende Stelle kann in der Zwischenzeit also andere Dinge erledigen.
+
+            // Mit new Promise() erzeugen wir ein neues Promise, welches direkt zurückgegeben wird (return).
+            // Das Promise ist unser Versprechen.
+            // An das Promise selbst übergeben wir eine Funktion, die unsere Aufgaben enthält.
+            // Dabei nutzen wir zwei Parameter der Funktion: resolve und reject.
+            return new Promise((resolve, reject) => {
+                if (number > 0.5) {
+                    // Wenn wir fertig sind, teilen wir unser Ergebnis mit, indem wir entweder
+                    // resolve() aufrufen und unser erfolgreiches Ergebnis übergeben, oder...
+                    resolve({ message: "Ja!", value: number });
+                } else {
+                    /// reject() aufrufen und den Grund für das gebrochene Versprechen mitteilen.
+                    reject({ message: "Nein!", value: number });
+                }
+            });
+        }
+
+        // Der reine Aufruf der Funktion sayYes() gibt uns nur das Promise zurück.
+        sayYes()
+            // Wenn wir auf das Ergebnis warten wollen, rufen wir zusätzlich die Methode then() des Promise auf.
+            // then() ist verknüpft mit resolve() und wird ausgeführt, sobald resolve() ausgeführt wurde.
+            // Der Parameter der Callback-Funktion in then() enthält unser Ergebnis,
+            // das wir an resolve() übergeben haben.
+            .then((resolveResult) => {
+                console.log(resolveResult);
+            })
+            // Kann das Versprechen auch gebrochen oder nicht eingehalten werden (rejected Promise),
+            // sollten wir mit der Methode catch() des Promise auf reject() reagieren.
+            // Wird reject() ausgeführt, startet es automatisch catch() statt then().
+            // Auch hier können wir wieder auf die übergebenen Werte zugreifen.
+            .catch((rejectResult) => {
+                console.error(rejectResult);
+            })
+            // Möchten wir etwas ausführen, egal welchen Ausgang unser Versprechen nehmen wird,
+            // schaffen wir das mit finally().
+            // finally() wird also sowohl nach then() als auch nach catch() ausgeführt.
+            .finally(() => {
+                console.log("Die Entscheidung ist gefallen");
+            });
+
+
+        // Verschiedene Schreibweisen von Funktionen:
+        // Synchrone Ausführung:
+        function doSync() {
+            return "Rückgabe nach synchroner Ausführung";
+        }
+        console.log(doSync());
+
+        // ------------
+
+        // Asynchrone Ausführung mittels Promise
+        function doSomething() {
+            return new Promise((resolve) => {
+                resolve("Rückgabe nach eingelöstem Versprechen");
+            });
+        }
+        doSomething()
+            .then((rueckgabe) => {
+                console.log(rueckgabe);
+            });
+
+        // ------------
+
+        // Asynchrone Ausführung mittels Callback
+        function doCallback(callback) {
+            callback("Rückgabe bei Aufruf des Callbacks")
+        }
+        doCallback((rueckgabe) => {
+            console.log(rueckgabe);
+        });
+
+
+        // Restaurant-Beispiel:
+        // console.log("Gast 1", "bestellen");
+        // console.log("Gast 1", "beauftragen");
+
+        // -------------------
+        // Race Condition!
+        // Setzen wir einen Timeout, um mit dem Servieren zu warten, bis die Küche fertig ist,
+        // kann es passieren, dass wir servieren, obwohl das Essen noch nicht fertig ist.
+        // Soetwas passiert also immer dann, wenn es unerwartet länger dauert in der Küche.
+        // Darunter verstehen wir eine "Race Condition": Die beiden Schritte liefern sich ein Rennen,
+        // wer zuerst ausgeführt wird.
+        // Das Ergebnis ist unberechenbar und somit sollten Race Conditions unbedingt vermieden werden!
+
+        // setTimeout(() => {
+        //     console.log("Gast 1", "kochen");
+        // }, Math.random() * 5 * 1000);
+
+        // setTimeout(() => {
+        //     console.log("Gast 1", "servieren");
+        // }, Math.random() * 5 * 1000);
+        // // -------------------
+
+        // console.log("");
+        // // ===================
+        // console.log("Gast 2", "bestellen");
+        // console.log("Gast 2", "beauftragen");
+
+        // setTimeout(() => {
+        //     console.log("Gast 2", "kochen");
+        // }, 2 * 1000);
+
+        // setTimeout(() => {
+        //     console.log("Gast 2", "servieren");
+        // }, 2.1 * 1000);
+
+        // console.log("");
+        // // ===================
+        // console.log("Gast 3", "bestellen");
+        // console.log("Gast 3", "beauftragen");
+
+        // function kochen() {
+        //     return new Promise((resolve) => {
+        //         console.log("Gast 3", "beginne zu kochen...");
+        //         setTimeout(() => {
+        //             resolve("zubereitetes Gericht");
+        //         }, 3 * 1000);
+        //     });
+        // }
+        // kochen().then((gericht) => {
+        //     console.log("Gast 3", "servieren", gericht);
+        // });
+
+        // const versprechen = kochen();
+        // console.log(versprechen);
+
+        // setTimeout(() => {
+        //     console.log(versprechen);
+        // }, 4 * 1000);
+
+        // const versprechen = kochen();
+        // console.log("versprechen", versprechen);
+
+        // versprechen.then((gericht) => {
+        //     console.log("Gast 3", "servieren", gericht);
+        //     console.log("versprechen", versprechen);
+        // });
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
