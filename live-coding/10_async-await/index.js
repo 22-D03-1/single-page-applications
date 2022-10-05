@@ -13,12 +13,14 @@ const inventory = {
     }
 }
 
+
+// Funktionen, die Asynchrones Verhalten imitieren
 function checkInventory(product) {
     return new Promise((resolve, reject) => {
         if(inventory[product].count > 0) {
-            resolve("Produkt vorhanden")
+            setTimeout(() => resolve("Produkt vorhanden"), 1000)
         } else {
-            reject("Produkt ausverkauft")
+            setTimeout(() => reject("Produkt ausverkauft"), 1000)
         }
     })
 }
@@ -26,9 +28,9 @@ function checkInventory(product) {
 function processPayment(product, balance) {
     return new Promise((resolve, reject) => {
         if(balance >= inventory[product].price) {
-            resolve("Bezahlung erfolgreich")
+            setTimeout(() => resolve("Bezahlung erfolgreich"), 500)
         } else {
-            reject("Nicht genug Guthaben")
+            setTimeout(() => reject("Nicht genug Guthaben"), 500)
         }
     })
 }
@@ -39,7 +41,10 @@ function shipOrder() {
     })
 }
 
-// Pyramid of Doom oder Callback Hell
+/**
+ * Da die Funktionen von einander abhängig sind müssen wir sie verketten. Was wir bekommen ist die:
+ * Pyramid of Doom oder Callback Hell 
+ * */ 
 
 /* function order(product, balance) {
     checkInventory(product)
@@ -65,8 +70,24 @@ function shipOrder() {
         })
 } */
 
-function order(product, balance) {
-    checkInventory
+/**
+ * Wir nutzen async ... await um die Ausführung zu pausieren. Erst wenn der Promise nicht mehr 
+ * <pending> ist erfolgt die Zuweisung zu der Variable und wir gehen weiter im Code
+ */
+
+async function order(product, balance) {
+    try {
+        const productInventory = await checkInventory(product)
+        console.log(productInventory)
+        const productPayment = await processPayment(product, balance)
+        console.log(productPayment)
+        const productShipment = await shipOrder()
+        console.log(productShipment)
+
+    } catch (error) {
+        console.log(error)
+    }
+
 }
 
 order("speaker", 62.5)
