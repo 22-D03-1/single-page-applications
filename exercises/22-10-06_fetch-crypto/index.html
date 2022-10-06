@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>Crypto Converter</title>
+</head>
+<body>
+    <div class="container p-5">
+        <div class="input-group mb-3">
+            <label class="input-group-text text-bg-primary" for="inputGroupCrypto">Crypto</label>
+            <select class="form-select" id="inputGroupCrypto">
+                <option value="" selected>Auswählen</option>
+                <option value="BTC">Bitcoin</option>
+                <option value="SOL">Solana</option>
+                <option value="ETH">Ethereum</option>
+            </select>
+        </div>
+        <div class="input-group mb-3">
+            <span class="input-group-text text-bg-success" id="amount">Cyrpto Betrag </span>
+            <input type="number" class="form-control" id="inputAmount" aria-describedby="amount">
+        </div>
+        <div class="input-group mb-3">
+            <label class="input-group-text text-bg-danger" for="inputGroupSelect01">Währung</label>
+            <select class="form-select" id="inputGroupCurrency">
+                <option value="" selected>Auswählen</option>
+                <option value="EUR">Euro</option>
+                <option value="USD">US Dollar</option>
+            </select>
+        </div>
+        <input type="text" id="inputResult" class="form-control" disabled>
+        <button class="btn btn-primary m-3" id="convert-button">Convert</button>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
