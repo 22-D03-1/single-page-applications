@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage & Session Storage</title>
+
+    <script>
+        function setDesign(designMode) {
+            const body = document.querySelector("body");
+            // Design setzen
+            if (designMode === "dark") {
+                // Dark Mode aktivieren
+                body.classList.add("dark");
+                body.classList.remove("light");
+            } else {
+                // Light Mode aktivieren
+                body.classList.add("light");
+                body.classList.remove("dark");
+            }
+        }
+
+
+        document.addEventListener("DOMContentLoaded", () => {
+            // Beim Aufruf der Seite das gewählte Design aktivieren
+            // Aktuellen Design Mode auslesen
+
+            // Mittels window.localStorage (oder nur localStorage) greifen wir
+            // auf den Local Storage des Browsers zu
+            // Hier können Werte als Key-Value-Pairs gespeichert werden.
+            // Diese sind nur für den aktuellen Origin erreichbar (wir können also nicht auf den Speicher anderer Websites zugreifen).
+            // Der Local Storage bleibt erhalten, auch wenn wir den Tab schließen
+            // und ist in anderen Tabs, in denen wir die gleiche Seite geöffnet haben, erreichbar.
+            // Der Session Storage (window.sessionStorage oder sessionStorage) ist nur in der aktuellen Session gültig,
+            // d.h. wird der Tab geschlossen, wird der Session Storage gelöscht.
+            // Zudem ist der Session Storage nicht in anderen Tabs mit der gleichen Website erreichbar.
+            // Jeder Tab hat seinen eigenen Session Storage.
+            // Sollte der Key bei der Abfrage durch getItem() nicht bekannt sein,
+            // bekommen wir null zurück.
+            const designMode = window.localStorage.getItem("designMode");
+            setDesign(designMode);
+
+            // Button zum Umschalten des Designs
+            document.querySelector("button").addEventListener("click", () => {
+                // Aktuellen Design Mode auslesen
+                const designMode = window.localStorage.getItem("designMode");
+
+                // Design umschalten
+                const newDesignMode = designMode === "dark" ? "light" : "dark";
+
+                // Wir können Werte im Storage speichern, indem wir die Methode setItem() verwenden.
+                // Hier geben wir zuerst den Key und dann den Value an.
+                window.localStorage.setItem("designMode", newDesignMode);
+
+                // Design setzen
+                setDesign(newDesignMode);
+            });
+        })
+    </script>
+
+    <style>
+        .dark {
+            background: #111;
+            color: #AAA;
+        }
+
+        .dark h1 {
+            font-size: bold;
+            color: #FFF;
+        }
+
+        .light {
+            background: #CCC;
+            color: #555;
+        }
+
+        .light h1 {
+            color: #000;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h1>Local Storage & Session Storage</h1>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius dolorem nihil porro fugit repellendus id quo atque
+        perferendis maxime quia sequi optio nisi, rem debitis magnam impedit rerum. Doloribus, facilis!</p>
+    <button>Light/Dark Theme</button>
+</body>
+
+</html>
