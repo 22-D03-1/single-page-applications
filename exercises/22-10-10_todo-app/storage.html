@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Storage</title>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const list = document.querySelector("ul");
+
+            // Aufgabenliste aus localStorage laden
+            // Falls nicht gesetzt, nutze als Standardwert ein leeres Array
+            const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+            // Füge jede einzelne Aufgabe zur UL hinzu
+            tasks.forEach(task => {
+                const li = document.createElement("li");
+                li.innerText = task;
+                list.appendChild(li);
+            });
+
+
+            list.addEventListener("click", function (event) {
+                if (event.target.matches("li")) {
+                    // Aktuelle Aufgabenliste aus localStorage laden
+                    const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+                    // Aufgabe aus Liste ("tasks") filtern
+                    const newTasks = tasks.filter(task => task !== event.target.innerText);
+                    console.log(event.target.innerText, newTasks);
+
+                    // aktualisierte Aufgabenliste in localStorage speichern
+                    localStorage.setItem("tasks", JSON.stringify(newTasks));
+
+                    // Aufgabe aus UL löschen
+                    event.target.remove();
+                }
+            });
+
+
+            const form = document.querySelector("form");
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                // Wert aus Input lesen
+                const task = form.elements.task.value;
+
+                // Aktuelle Aufgabenliste aus localStorage laden
+                const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+                // Aufgabe zur Liste ("tasks") hinzufügen
+                const newTasks = [...tasks, task];
+
+                // aktualisierte Aufgabenliste in localStorage speichern
+                localStorage.setItem("tasks", JSON.stringify(newTasks));
+
+                // Neue Aufgabe in UL auflisten
+                const newTask = document.createElement("li");
+                newTask.innerText = task;
+                list.appendChild(newTask);
+
+                // Formular zurücksetzen
+                form.reset();
+            });
+
+            document.getElementById("reset-list").addEventListener("click", function (event) {
+                event.preventDefault();
+                // mittels removeItem löschen wir den gesamten Eintrag aus localStorage
+                localStorage.removeItem("tasks");
+                list.innerHTML = "";
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <ul></ul>
+    <form>
+        <label>
+            Aufgabe
+            <input type="text" placeholder="Neue Aufgabe..." name="task">
+        </label>
+        <input type="submit" value="Speichern" name="save">
+        <button type="button" id="reset-list">Aufgabenliste leeren</button>
+    </form>
+
+</body>
+
+</html>
