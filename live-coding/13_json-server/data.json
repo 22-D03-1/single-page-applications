@@ -1,0 +1,136 @@
+{
+    "emails": [
+        {
+            "id": 1,
+            "first_name": "Jilleen",
+            "email": "jshawe0@newyorker.com"
+        },
+        {
+            "id": 2,
+            "first_name": "Hadleigh",
+            "email": "hsinncock1@pen.io"
+        },
+        {
+            "id": 3,
+            "first_name": "Berty",
+            "email": "beasun2@xing.com"
+        },
+        {
+            "id": 4,
+            "first_name": "Myra",
+            "email": "muwins3@reference.com"
+        },
+        {
+            "id": 5,
+            "first_name": "Alix",
+            "email": "ahedau4@prlog.org"
+        },
+        {
+            "id": 6,
+            "first_name": "Consuelo",
+            "email": "cvlasenko5@webs.com"
+        },
+        {
+            "id": 7,
+            "first_name": "Howey",
+            "email": "hedgehill6@studiopress.com"
+        },
+        {
+            "id": 8,
+            "first_name": "Arlin",
+            "email": "azupo7@live.com"
+        },
+        {
+            "id": 9,
+            "first_name": "Inger",
+            "email": "icarpmile8@telegraph.co.uk"
+        },
+        {
+            "id": 10,
+            "first_name": "Fredra",
+            "email": "fdelia9@boston.com"
+        }
+    ],
+    "animals": [
+        {
+            "id": 1,
+            "animal": "Lapwing, southern"
+        },
+        {
+            "id": 2,
+            "animal": "Loris, slender"
+        },
+        {
+            "id": 3,
+            "animal": "African fish eagle"
+        },
+        {
+            "id": 4,
+            "animal": "Duck, white-faced whistling"
+        },
+        {
+            "id": 5,
+            "animal": "Weaver, chestnut"
+        },
+        {
+            "id": 6,
+            "animal": "Red-winged hawk (unidentified)"
+        },
+        {
+            "id": 7,
+            "animal": "Nilgai"
+        },
+        {
+            "id": 8,
+            "animal": "Barking gecko"
+        },
+        {
+            "id": 9,
+            "animal": "Grant's gazelle"
+        },
+        {
+            "id": 10,
+            "animal": "American black bear"
+        },
+        {
+            "id": 11,
+            "animal": "Eagle, bateleur"
+        },
+        {
+            "id": 12,
+            "animal": "Yak"
+        },
+        {
+            "id": 13,
+            "animal": "Shrike, common boubou"
+        },
+        {
+            "id": 14,
+            "animal": "Galapagos tortoise"
+        },
+        {
+            "id": 15,
+            "animal": "Lion, california sea"
+        },
+        {
+            "id": 16,
+            "animal": "Skunk, western spotted"
+        },
+        {
+            "id": 17,
+            "animal": "Bare-faced go away bird"
+        },
+        {
+            "id": 18,
+            "animal": "Kangaroo, jungle"
+        },
+        {
+            "id": 19,
+            "animal": "Anaconda (unidentified)"
+        },
+        {
+            "id": 20,
+            "animal": "Fox, grey"
+        }
+    ]
+}

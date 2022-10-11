@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch from own server</title>
+
+    <script>
+        async function getEmails() {
+            const response = await fetch("http://localhost:3000/emails");
+
+            if (response.status !== 200) {
+                throw new Error(response.status);
+            }
+
+            const emails = await response.json();
+            console.log(emails);
+        }
+
+        async function getAnimals() {
+            const response = await fetch("http://localhost:3000/animals");
+
+            if (response.status !== 200) {
+                throw new Error(response.status);
+            }
+
+            const animals = await response.json();
+            console.log(animals);
+        }
+
+        async function getUnknown() {
+            const response = await fetch("http://localhost:3000/thisdoesnotexist");
+            console.log(response);
+
+            if (response.status !== 200) {
+                throw new Error(response.status);
+            }
+
+            const unknown = await response.json();
+            console.log(unknown);
+        }
+
+        async function getUsersByEmail(emails) {
+            console.log("getUsersByEmail", emails);
+        }
+
+        async function init() {
+            try {
+                const emails = await getEmails();
+                const users = await getUsersByEmail(emails);
+            } catch (error) {
+                console.error(error);
+            }
+
+            try {
+                const emails = await getUnknown();
+                const users = await getUsersByEmail(emails);
+            } catch (error) {
+                console.error(error);
+            }
+
+            try {
+                await getAnimals();
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        init();
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
