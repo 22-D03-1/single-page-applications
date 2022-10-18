@@ -1,5 +1,5 @@
 import * as salaryModules from "./modules/salary.js"
-import { averageSalary } from "./modules/calculations.js"
+import averageSalary from "./modules/calculations.js"
 
 function updateResults(){
 
@@ -13,8 +13,8 @@ function updateResults(){
     const role = checkedRole.value;
     const company = checkedCompany.value;
     const salary = salaryModules.salaryData.find(s => s.role == role && s.company == company)["salary"]
-    const averageSalaryByRole = averageSalary(salaryModules.salaryData, "role", role)
-    const averageSalaryByCompany = averageSalary(salaryModules.salaryData, "company", company)
+    const averageSalaryByRole = averageSalary(salaryModules.getDataByRole(role))
+    const averageSalaryByCompany = averageSalary(salaryModules.getDataByCompany(company))
     const industryAverageSalary = averageSalary(salaryModules.salaryData)
 
     document.querySelector('#salarySelected').innerText = `The salary for ${role}s at ${company} is \$${salary}`;
@@ -54,5 +54,5 @@ function renderInputButtons(labels, groupName) {
     document.querySelector('main').prepend(container);
 }
 
-renderInputButtons(salaryModules.getRoles(), 'role');
 renderInputButtons(salaryModules.getCompanies(), 'company');
+renderInputButtons(salaryModules.getRoles(), 'role');
