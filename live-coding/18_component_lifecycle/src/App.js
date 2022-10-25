@@ -12,6 +12,10 @@ function App() {
   const [counter, setCounter] = useState(0); // 0, 1, 2, 3, 4, 5,...
   const [testProp, setTestProp] = useState(0);
 
+  useEffect(() => {
+    setCounter(+localStorage.getItem("counter") || 0);
+  }, []);
+
   const handleClick = (event) => {
     const newCounter = counter + 1;
     // React sammelt Änderungen, um nicht für jede Kleinigkeit ein Rerendering anzustoßen.
@@ -20,6 +24,7 @@ function App() {
     // Obwohl hier also zwei Änderungen stattfinden (beide States werden geändert)...
     if (newCounter > 4) setTestProp(counter * 2);
     setCounter(newCounter);
+    localStorage.setItem("counter", newCounter);
 
     // ...bleiben die Werte zunächst unverändert.
     console.log("after", counter, testProp);
@@ -30,7 +35,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         {/* <Component propName={propValue} /> */}
-        {counter < 10 && <Counter counter={counter} testProp={testProp} />}
+        <Counter counter={counter} testProp={testProp} />
         <Button handleClick={handleClick} />
       </header>
     </div>
