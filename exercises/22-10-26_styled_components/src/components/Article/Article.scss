@@ -1,0 +1,17 @@
+#top-card-img {
+    width: 100%;
+    max-height: 300px;
+    flex-direction: row;
+    align-items: center;
+    object-fit: cover;
+
+    img {
+        width: 60%;
+        height: 300px;
+        object-fit: cover;
+    }
+}
+
+#top-card-body {
+    flex: 0 1 357px;
+}

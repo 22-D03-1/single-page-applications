@@ -1,6 +1,4 @@
-/* 
-Unsere eigene CSS Datei ist in der Hierarchie über der von Bootstrap
-angesiedelt */
-.btn {
-    color: black
+$bgColor: #f9f2e8;
+body {
+    background-color: $bgColor;
 }

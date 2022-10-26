@@ -1,10 +1,14 @@
 import Food from "./components/Food/Food"
 import Header from "./components/Header/Header";
-import Button from 'react-bootstrap/Button';
+import Button from '@mui/material/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+
 import "./App.scss"
+
+import { ThemeProvider } from "@mui/material";
+import { appTheme } from "./themes/theme";
 
 
 const favoriteFood = [
@@ -28,7 +32,7 @@ const favoriteFood = [
 
 const foodContainer = favoriteFood.map((el, index) => {
     return (
-        <Col key={index}>
+        <Col className="p-3" xs={6} md={4} lg={3} key={index}>
             <Food food={el}/>
         </Col>
     )
@@ -36,16 +40,19 @@ const foodContainer = favoriteFood.map((el, index) => {
 
 function App() {
     return (
-        <div className="App">
-            <Header />
-            <Container>
-                <h1>Unsere Lieblingsessen</h1>
-                <Button variant="outline-primary" size="lg">Filtern</Button>
-                <Row>
-                    {foodContainer}
-                </Row>
-            </Container>
-        </div>
+        <ThemeProvider theme={appTheme}>
+            <div className="App">
+                <Header />
+                <Container>
+                    <Row md={6}>
+                        <Button className="m-3" variant="contained" color="secondary">Filtern</Button>
+                    </Row>
+                    <Row >
+                        {foodContainer}
+                    </Row>
+                </Container>
+            </div>
+        </ThemeProvider>
     )
 }
 

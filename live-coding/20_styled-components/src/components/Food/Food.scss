@@ -1,4 +1,7 @@
-$fontColor: orange;
+$mainColor: #343753;
+$accentColor: #f34d29;
+$bgColor: #f9f2e8;
+
 
 .food-img {
     width: 100%;
@@ -7,14 +10,12 @@ $fontColor: orange;
 }
 
 .higlighted-headline {
-    color: $fontColor
+    color: $mainColor
 }
 
-.food-container {
-    width: 300px
-}
+
 
 .img-container {
-    width: 300px;
+    width: 100%;
     height: 200px;
 }

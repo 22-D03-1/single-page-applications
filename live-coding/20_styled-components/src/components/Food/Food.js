@@ -17,15 +17,15 @@ export default function Food({ food }) {
      */
 
     const h3Style = {
-        fontSize: "25px"
+        fontSize: "20px"
     }
 
     return (
-        <div className="food-container">
+        <div className="food-container ">
             <div className="img-container">
-                <img className="food-img" src={food.img} />
+                <img className="food-img rounded" src={food.img} />
             </div>
-            <h3 className="higlighted-headline" style={h3Style}>{food.name}</h3>
+            <h3 className="higlighted-headline mt-2" style={h3Style}>{food.name}</h3>
         </div>
     )
 }
