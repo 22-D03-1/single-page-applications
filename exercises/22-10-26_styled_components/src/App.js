@@ -6,7 +6,6 @@ import data from './data';
 import "./App.scss"
 
 const articles = data.map((el, i) => {
-    const full = i == 0 ? true : false
     return (
         <Col lg={i != 0 ? true : 16} key={i} className="pb-5 px-3">
             <Article topCard={ i== 0 ? true : false} article={el}/>
