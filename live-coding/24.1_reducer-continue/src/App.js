@@ -7,7 +7,7 @@ import {
 
 import user from "./user"
 
-import {useReducer} from "react"
+import { useReducer } from "react"
 
 
 const initState = {
@@ -88,7 +88,10 @@ function App() {
                         type="email"
                         placeholder="E-Mail"
                         value={state.inputEmail}
-                        onChange={(e)=> dispatch({type: "updateInputEmail", value: e.target.value})}/>
+                        onChange={(e)=> dispatch({
+                            type: "updateInputEmail", 
+                            value: e.target.value
+                        })}/>
                     </Row>
                     <Row>
                         <input 
@@ -96,7 +99,10 @@ function App() {
                         type="password"
                         placeholder="Passwort"
                         value={state.inputPassword}
-                        onChange={(e)=> dispatch({type: "updateInputPassword", value: e.target.value})}/>
+                        onChange={(e)=> dispatch({
+                            type: "updateInputPassword", 
+                            value: e.target.value
+                        })}/>
                     </Row>
                     <Row>
                         <Button onClick={()=> dispatch({type: "loginUser"})}>
