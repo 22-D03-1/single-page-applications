@@ -19,17 +19,27 @@ const initState = {
 const reducer = (state, action) => {
     switch(action.type) {
         case "addToBasket":
-            state = {
-                ...state,
-                productsInBasket: [...state.productsInBasket, action.payload]
+            const itemIndex = state.productsInBasket.indexOf(action.payload)
+
+            if (itemIndex < 0) {
+                state = {
+                    ...state,
+                    productsInBasket: [...state.productsInBasket, action.payload]
+                }
             }
+            else {
+                state = {
+                    ...state,
+                    productsInBasket: state.productsInBasket.filter(p => p != action.payload)
+                }
+            }
+
             break;
         case "selectProduct":
             state = {
                 ...state,
                 selectedProduct: data.find(d => d.id == action.payload)
             }
-            console.log(state.selectedProduct)
             break;
         default:
             console.warn("unknown action")
@@ -46,10 +56,14 @@ function App() {
             <Router>
                 <Header countProducts={state.productsInBasket.length}/>
                 <Routes>
-                    <Route path="/" element={<Home products={data} dispatch={dispatch}/>}/>
+                    <Route path="/" element={
+                        <Home productsInBasket={state.productsInBasket} products={data} dispatch={dispatch}/>
+                    }/>
                     <Route path="/impressum" element={<Impressum/>}/>
                     <Route path="/datenschutz" element={<Datenschutz/>}/>
-                    <Route path="/:product_id" element={<Product dispatch={dispatch}/>}/>
+                    <Route path="/:product_id" element={
+                        <Product productsInBasket={state.productsInBasket} dispatch={dispatch} product={state.selectedProduct}/>
+                    }/>
                 </Routes>
                 <Footer />
             </Router>
