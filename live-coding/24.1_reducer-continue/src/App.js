@@ -9,6 +9,12 @@ import user from "./user"
 
 import { useReducer } from "react"
 
+/**
+ * Im Vergleich zu unserem ersten Beispiel können wir den reducer auf nutzen für 
+ * komplexeres state management. Dafür definieren wir ein initiales State Objekt, 
+ * welches alle unsere State Variablen beinhalten
+ */
+
 
 const initState = {
     inputEmail: "",
@@ -17,6 +23,12 @@ const initState = {
     alert: null
 
 }
+
+/**
+ * Unser reducer hat weiterhin ein switch statement, was aber nun verschiedene Actions für 
+ * verschiedene State Variablen beinhaltet. Bspw haben wir sowohl cases, die wir für unser
+ * controlled form benutzen als auch um unseren Nutzer einzuloggen oder alerts zu senden.
+ */
 
 const reducer = (state, action) => {
     switch (action.type) {
@@ -71,6 +83,15 @@ const reducer = (state, action) => {
 function App() {
 
     const [ state, dispatch ] = useReducer(reducer, initState)
+
+    /**
+     * Notes:
+     * Alert ist ein Bootstrap Component um bspw Fehlermeldungen zu senden.
+     * Dieser wird nur gezeigt wenn unsere state Variable alert einen Wert hat.
+     * 
+     * Außerdem nuthen wir conditional rendering um entweder unser Login Form oder 
+     * eine Begrüßung zu senden
+     */
 
     return (
         <div className="App">
