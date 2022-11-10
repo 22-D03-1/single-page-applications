@@ -23,13 +23,13 @@ const reducer = (state, action) => {
         case "updateInputEmail":
             state = {
                 ...state,
-                inputEmail: action.value
+                inputEmail: action.payload
             }
             break;
         case "updateInputPassword":
             state = {
                 ...state,
-                inputPassword: action.value
+                inputPassword: action.payload
             }
             break;
         case "loginUser":
@@ -90,7 +90,7 @@ function App() {
                         value={state.inputEmail}
                         onChange={(e)=> dispatch({
                             type: "updateInputEmail", 
-                            value: e.target.value
+                            payload: e.target.value
                         })}/>
                     </Row>
                     <Row>
@@ -101,7 +101,7 @@ function App() {
                         value={state.inputPassword}
                         onChange={(e)=> dispatch({
                             type: "updateInputPassword", 
-                            value: e.target.value
+                            payload: e.target.value
                         })}/>
                     </Row>
                     <Row>
