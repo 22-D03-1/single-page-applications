@@ -8,7 +8,7 @@ export default function Header({countProducts}) {
         <Navbar bg="warning">
             <Container>
             <Navbar.Brand><Link to="/">Flowmarkt</Link></Navbar.Brand>
-            <p>{countProducts} Produkte im Warenkorb</p>
+            <span>{countProducts} Produkte im Warenkorb</span>
             </Container>
         </Navbar>
     )
