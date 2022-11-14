@@ -10,6 +10,8 @@ import Header from "./components/Header"
 import Footer from "./components/Footer"
 
 function App() {
+    // Statt die States in der App-Komponente zu verwalten und via props an alle Children weiterzureichen,
+    // richten wir einen Context ein. Dieser stellt seine States auch ohne Props seinen Children zur Verfügung.
     return (
         <div className="App">
             <Products>

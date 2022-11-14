@@ -9,11 +9,21 @@ import { Link } from "react-router-dom"
 import { ProductsContext } from "../context/Products";
 
 function Ad({ product }) {
+    // Mit dem Hook useContext greifen wir direkt auf den Context zu.
+    // Somit sparen wir uns das Durchreichen der Props.
+    // useContext bekommt den entsprechenden Context übergeben
+    // und gibt uns alle Werte aus der value-Property des Providers aus.
+    // Wir suchen uns mittels Destructuring nur das aus, was wir tatsächlich benötigen.
     const { productsInBasket, toggleProductInBasket } = useContext(ProductsContext);
     const inBasket = productsInBasket.includes(product.id);
 
     const clickHandler = (event) => {
         event.preventDefault();
+        // Damit wir hier nicht selbst schauen müssen, ob das Produkt schon im Warenkorb ist,
+        // um zu entscheiden, wie wir den State anpassen sollen,
+        // greifen wir nur auf die Funktion aus dem Context zu und übergeben die Product ID
+        // und überlassen die Arbeit dem Context.
+        // Den aktualisierten State bekommen wir dann automatisch über useContext mitgeteilt.
         toggleProductInBasket(product.id);
     }
 
