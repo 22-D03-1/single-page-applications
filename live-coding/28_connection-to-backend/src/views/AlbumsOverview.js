@@ -14,7 +14,7 @@ export default function() {
             .then(data => setAlbums(data))
     },[])
 
-    const clickHandler = (album) => {
+    const clickFunction = (album) => {
         const body = {
             name: album,
             photos: []
@@ -40,7 +40,7 @@ export default function() {
                 )}
             </Row>
             <h2>Neues Album anlegen</h2>
-            <AlbumNameForm clickFunction={clickHandler}/>
+            <AlbumNameForm clickFunction={clickFunction}/>
         </Container>
     )
 }
