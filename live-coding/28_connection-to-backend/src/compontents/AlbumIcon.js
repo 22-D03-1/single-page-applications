@@ -1,12 +1,12 @@
 
 import { Link } from "react-router-dom";
 
-export default function({id}){
+export default function({album}){
 
     return (
-        <Link className="album-link" to={"/albums/"+id}>
+        <Link className="album-link" to={"/albums/"+album.id}>
             <div className="album-icon">
-                <h3 className="album-name">Natur</h3>
+                <h3 className="album-name">{album.name}</h3>
             </div>
         </Link>
     )
