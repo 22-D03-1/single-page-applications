@@ -1,5 +1,5 @@
 {
-  "name": "14.1_boilerplate",
+  "name": "FotoApp",
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
@@ -12,9 +12,11 @@
   "license": "ISC",
   "dependencies": {
     "bootstrap": "^5.2.2",
+    "bootstrap-icons": "^1.10.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.5.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.4.4",
     "react-scripts": "^5.0.1",
     "sass": "^1.56.1"
   },
