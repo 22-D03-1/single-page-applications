@@ -2,16 +2,35 @@ import {useEffect, useState} from "react"
 
 import { Container, Row, Col } from "react-bootstrap"
 import AlbumIcon from "../compontents/AlbumIcon"
+import AlbumNameForm from "../compontents/AlbumNameForm"
 
 export default function() {
 
     const [albums, setAlbums] = useState([])
 
     useEffect(()=>{
-        fetch(`http://172.20.10.2:4000/albums`)
+        fetch(`http://127.0.0.1:4000/albums`)
             .then(response => response.json())
             .then(data => setAlbums(data))
     },[])
+
+    const clickHandler = (album) => {
+        const body = {
+            name: album,
+            photos: []
+        }
+        fetch("http://127.0.0.1:4000/albums", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify(body)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setAlbums(data)
+            })
+    }
 
     return (
         <Container>
@@ -20,6 +39,8 @@ export default function() {
                     <AlbumIcon key={i} album={a}/>
                 )}
             </Row>
+            <h2>Neues Album anlegen</h2>
+            <AlbumNameForm clickFunction={clickHandler}/>
         </Container>
     )
 }

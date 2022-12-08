@@ -8,7 +8,7 @@ export default function() {
     const [photos, setPhotos] = useState([])
 
     useEffect(()=>{
-        fetch("http://172.20.10.2:4000/photos")
+        fetch("http://127.0.0.1:4000/photos")
             .then(res => res.json())
             .then(data => setPhotos(data))
     }, [])

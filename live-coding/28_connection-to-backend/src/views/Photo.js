@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
-import {useParams} from "react-router-dom"
+import {useParams, useNavigate} from "react-router-dom"
 
-import {Container} from "react-bootstrap"
+import {Container, Row, Col, Button} from "react-bootstrap"
 
 export default function(){
+    const navigate = useNavigate()
     const {photoId} = useParams()
 
     const [photo, setPhoto] = useState({})
@@ -26,14 +27,36 @@ export default function(){
      */
 
     useEffect(()=>{
-        fetch(`http://172.20.10.2:4000/photos/${photoId}`)
+        fetch(`http://127.0.0.1:4000/photos/${photoId}`)
             .then(response => response.json())
             .then(data => setPhoto(data))
     },[photoId])
 
+    const clickHandler = () => {
+        fetch(`http://127.0.0.1:4000/photos/${photoId}`, {
+            method: "DELETE"
+        })
+            .then(response => {
+                if(response.status === 202) {
+                    navigate("/photos")
+                }
+            })
+    }
+
     return(
         <Container>
-            <img src={photo.url} />
+            <Row className="m-3">
+                <Col>
+                    <div className="photo-container">
+                        <img src={photo.url} />
+                    </div>
+                </Col>
+                <Col>
+                    <div>
+                        <Button onClick={clickHandler}>Löschen</Button>
+                    </div>
+                </Col>
+            </Row>
         </Container>
     )
 }

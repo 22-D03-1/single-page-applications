@@ -28,6 +28,7 @@ h1 {
 }
 .album-link {
   text-decoration: none;
+  width: auto;
 }
 
 .img-preview {
@@ -37,4 +38,11 @@ h1 {
     img {
       height: 100%;
     }
+}
+
+.photo-container {
+  height: 90vh;
+  img {
+    height: 100%;
+  }
 }
